@@ -15,7 +15,7 @@ public class Notes {
     @OneToOne
     private Recipe recipe;
 
-    @Lob // Do this to make sure that recipeNotes can have more than 250 characters (which is the max hibernate can take)
+    @Lob
     private String recipeNotes;
 
     public Long getId() {
