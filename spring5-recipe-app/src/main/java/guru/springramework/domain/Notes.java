@@ -1,10 +1,16 @@
 package guru.springramework.domain;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 import javax.persistence.*;
 
 /**
  * Created by Joachim on 25/03/2018.
  */
+@Data
+@EqualsAndHashCode(exclude={"recipe"})
+
 @Entity
 public class Notes {
 
@@ -17,28 +23,4 @@ public class Notes {
 
     @Lob
     private String recipeNotes;
-
-    public Long getId() {
-        return Id;
-    }
-
-    public void setId(Long id) {
-        Id = id;
-    }
-
-    public Recipe getRecipe() {
-        return recipe;
-    }
-
-    public void setRecipe(Recipe recipe) {
-        this.recipe = recipe;
-    }
-
-    public String getRecipeNotes() {
-        return recipeNotes;
-    }
-
-    public void setRecipeNotes(String recipeNotes) {
-        this.recipeNotes = recipeNotes;
-    }
 }
