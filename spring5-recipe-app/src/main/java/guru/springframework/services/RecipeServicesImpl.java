@@ -1,11 +1,12 @@
-package guru.springramework.services;
+package guru.springframework.services;
 
-import guru.springramework.domain.Recipe;
-import guru.springramework.repositories.RecipeRepository;
+import guru.springframework.domain.Recipe;
+import guru.springframework.repositories.RecipeRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -25,7 +26,22 @@ public class RecipeServicesImpl implements RecipeService {
         log.debug("Im in the service");
         Set<Recipe> recipeSet = new HashSet<>();
 
+        // List<Recipe> recipeList = (List<Recipe>) recipeRepository.findAll();
+        //for (Recipe recipe : recipeList)
+        //    recipeSet.add(recipe);
+
         recipeRepository.findAll().iterator().forEachRemaining(recipeSet::add);
         return recipeSet;
+    }
+
+    @Override
+    public Recipe findById(Long l) {
+        Optional<Recipe> recipeOptional = recipeRepository.findById(l);
+
+        if (!recipeOptional.isPresent()) {
+            throw new RuntimeException("Recipe Not Found!");
+        }
+
+        return recipeOptional.get();
     }
 }
